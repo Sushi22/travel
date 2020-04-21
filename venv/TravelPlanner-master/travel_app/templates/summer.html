@@ -1,0 +1,50 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    
+    <title>Summer</title>
+</head>
+<body>
+    <div class="destinations" id="destinations">
+		<div class="container">
+			<div class="row">
+				<div class="col text-center">
+					<div class="section_subtitle">simply amazing places</div>
+					<div class="section_title"><h2>Popular Destinations</h2></div>
+				</div>
+			</div>
+			<div class="row destinations_row">
+				<div class="col">
+					<div class="destinations_container item_grid">
+						{%for s in summ%}
+						<!-- Destination -->
+						<div class="destination item">
+							<div class="destination_image">
+								<img src="{{s.img.url}}" alt="">
+								{%if s.offer %}
+								<div class="spec_offer text-center"><a href="#">Special Offer</a></div>
+								{% endif %}
+							</div>
+							<div class="destination_content">
+								<div class="destination_title"><a href="destinations">{{s.name}}</a></div>
+								<div class="destination_subtitle"><p>{{s.desc}}</p></div>
+								<div class="destination_price">From ${{s.price}}</div>
+								<div class="destination_price">{{s.days}}</div>
+							</div>
+						</div>
+						{%endfor%}
+
+						
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
