@@ -1,0 +1,74 @@
+.bor
+{
+  box-sizing: border-box;
+  width: 1200px;
+  height: 280px;  
+  border: 2px solid rgb(117, 117, 124);
+  padding-top: 10px;
+}
+.name
+{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 35px;
+    color: black;
+}
+
+.price
+{
+    color: rgb(110, 209, 18);
+    font-size: 20px;
+}
+.time
+{
+    color: rgb(189, 45, 45);
+    font-size: 20px;
+}
+.destination_content
+{
+    margin-left: 420px;
+    margin-top: -230px;
+}
+.destination
+{
+	width: calc(100%);
+	padding-left: 15px;
+	padding-right: 15px;
+	margin-bottom: 170px;
+}
+.icon
+{
+    float:right;
+   
+}
+.meal
+{
+    margin-left: 260px;
+    margin-top: -70px;
+}
+.sight
+{
+    margin-left: 400px;
+    margin-top: -70px;
+}
+
+.hotel
+{
+    margin-left: 130px;
+    margin-top: -170px;
+}
+.flight
+{
+    
+    margin-left: 130px;
+    margin-top: 40px;
+}
+.car
+{
+    margin-left: 400px;
+    margin-top: -70px;
+}
+.train
+{
+    margin-left: 260px;
+    margin-top: -70px;
+}

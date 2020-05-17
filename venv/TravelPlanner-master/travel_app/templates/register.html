@@ -3,49 +3,48 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{% static 'http://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css'%}">
-    <link rel="stylesheet" href="{% static 'static/css/style.css'%}">
-    <title>Login & Registration</title>
+    <title>Register yourself here!!</title>
+    <link rel="stylesheet" type="text/css"  href="static/css/style.css">
 </head>
 <body>
-    <div class="container" >
-        <nav>
-            <div class="nav-wrapper">
-                <h4 class="brand-logo">Welcome</h4>
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="/login">Login</a></li>
-                    <li><a href="/">Home</a></li>
-                </ul>
-            </div>
-        </nav>
-        <div class="register">
-            
-            <h2>Register</h2>
+    <div id="login-box" >
+        <div class="left-box">
+            <h1>Sign Up</h1>
             <form action="/register/process" method="POST">
                 {% csrf_token %}
                 <label for="fname">First Name</label><br>
                 <input type="text" name="fname">
                 <label for="lname">Last Name</label>
                 <input type="text" name="lname" id="lname">
+                
                 <label for="email">Email</label>
                 <input type="text" name="email" id="email">
                 <label for="pw">Password</label>
                 <input type="password" name="pw" id="pw">
                 <label for="pw">Confirm Password</label>
                 <input type="password" name="confirm_pw" id="confirm_pw">
-                <input type="submit" class="btn" value="Register">
+                <input type="submit" class="btn" value="Sign Up">
             </form>
-        
-        {% if messages %}
-        {% for message in messages%}
-        <p class = 'red-text'>{{message}}</p>
-        {% endfor %}
-        {% endif %}
-        <img class="img" src="static/img/travel.jpeg"/>
+            <p>Already have an account?<a href="/login" style="text-decoration:none">Login</a></p>
+            {% if messages %}
+            {% for message in messages%}
+            <p class = 'red-text'>{{message}}</p>
+            {% endfor %}
+            {% endif %}
+        </div>
+        <div class="right-box">
+            <span class="signinwith">Sign in with<br/>
+            </span>
+            <button  class="loginBtn loginBtn--facebook">
+                <a  href="{% url 'social:begin' 'facebook' %}" style="text-decoration:none">Log in Facebook</a>
+              </button>
+              
+              <button  class="loginBtn loginBtn--google">
+                <a  href="{% url 'social:begin' 'google-oauth2' %}" style="text-decoration:none">Log in Google+</a>
+              </button>
+            
+        </div>
+        <div class="or">OR</div>
     </div>
-</div>
-
 </body>
 </html>

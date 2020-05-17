@@ -5,9 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    
-    
-    <title>Summer</title>
+	<title>Winter</title>
+	<meta name="description" content="Travello template project">
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap4/bootstrap.min.css' %}">
+	<link href="{% static 'plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.theme.default.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/animate.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/main_styles.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/responsive.css'%}">
+	<link rel="stylesheet" type="text/css"  href="{% static 'static/css/style2.css'%}">
 </head>
 <body>
     <div class="destinations" id="destinations">
@@ -18,31 +25,50 @@
 					<div class="section_title"><h2>Popular Destinations</h2></div>
 				</div>
 			</div>
-			<div class="row destinations_row">
-				<div class="col">
-					<div class="destinations_container item_grid">
 						{%for w in win%}
 						<!-- Destination -->
-						<div class="destination item">
-							<div class="destination_image">
+						<div class="bor">
+						
+							<div class="destination item">
+							
+								<div class="destination_image">
+								
 								<img src="{{w.img.url}}" alt="">
 								{%if w.offer %}
 								<div class="spec_offer text-center"><a href="#">Special Offer</a></div>
 								{% endif %}
 							</div>
+						
 							<div class="destination_content">
-								<div class="destination_title"><a href="destinations">{{w.name}}</a></div>
+								<div class="destination_title"><a href="destination">{{w.name}}</a></div>
 								<div class="destination_subtitle"><p>{{w.desc}}</p></div>
-								<div class="destination_price">From ${{w.price}}</div>
-                                <div class="destination_price">From ${{w.days}}</div>
+								<div class="price">Starting From-Rs.{{w.price}} per person</div>
+								<div class="time">Ideal Duration-{{w.days}} Days</div>
+							</div>
+							<div class="icon">
+								<div class="hotel">
+									<a href="{%static'http://brands.datahc.com/'%}"><img src="{%static'hotel.jpeg'%}" width="82" height="82" alt="">Hotel</a>
+								</div>
+								<div class="meal">
+									<img src="{{w.icon_1.url}}" alt="">
+									<div class="destination_title"><a href="{{w.page_name_1}}">{{w.name_1}}</a></div>
+								</div>
+								<div class="sight">
+									<img src="{{w.icon_2.url}}" alt="">
+									<div class="destination_title"><a href="{{w.page_name_2}}">{{w.name_2}}</a></div>
+								</div>
+								<div class="flight">
+									<a href=""><img src="{%static'flight.jpeg'%}" width="82" height="86" alt="">Flight</a>
+								</div>
+								<div class="train">
+									<a href=""><img src="{%static'train.jpeg'%}" width="82" height="86" alt="">Train</a>
+								</div>
+								<div class="car">
+									<a href=""><img src="{%static'car.jpeg'%}" width="82" height="86" alt="">Car Rentals</a>
+								</div>
 							</div>
 						</div>
 						{%endfor%}
-
-						
-
-					</div>
-				</div>
 			</div>
 		</div>
 	</div>

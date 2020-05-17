@@ -1,0 +1,52 @@
+{%load static%}
+<?php
+$linkok=$_GET['link'];
+?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="{% static 'http://www.w3.org/1999/xhtml'}">
+<head>
+
+<title>Hotel Booking  </title>
+
+<link rel="shortcut icon" href="{% static 'images/logofav.ico'}" type="image/x-icon" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<style type="text/css">
+body {
+	padding: 0px;
+	margin-top: 80px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	
+}
+</style>
+
+<link href="{% static 'http://fonts.googleapis.com/css?family=Roboto:400,300,700'}" rel='stylesheet' type='text/css'>
+<link href="{% static 'http://fonts.googleapis.com/css?family=Lobster'}" rel='stylesheet' type='text/css'>
+<link href="css/styles.css" rel="stylesheet" type="text/css" />
+<link rel="shortcut icon" href="{% static 'images/favicon.ico'}" />
+</head>
+<body>
+<div id="Top">
+  <div id="InTop">
+    <div class="topnavi"><a href="contact.php" title="Guides">CONTACT US</a></div>
+  
+    <div class="topnavi"><a href="rentalcars.php" title="Contact Us">CAR RENTALS</a></div>
+<div class="topnavi"><a href="flights.php" title="Flights">FLIGHTS</a></div>
+<div class="topnaviC"><a href="hotels.php" title="Hotels">HOTELS</a></div>
+<div class="topnavi"><a href="about.php" title="Hotels">ABOUT US</a></div>
+<div class="topnavi"><a href="index.php" title="Hotels">HOME</a></div>
+<a href="./"><img src="{% static 'images/logo.png'}" alt="movetotravel.com" width="300" height="75" border="0" /></a></div>
+</div>
+<div id="Home">
+<iframe id="tree" name="tree" src="{% static 'http://brands.datahc.com/?a_aid=190357&brandId=554921&label=MoveToTravel/'}"<?php echo($linkok); ?>" frameborder="0" marginheight="0" marginwidth="0" width="100%" height="2500" scrolling="auto"></iframe>
+</div>
+</div>
+<div class="clear"></div>
+</div>
+<div id="Bottom">
+<div id="Copyright">
+&copy; Movetotravel.com 2016</div></div>
+</body>
+</html>

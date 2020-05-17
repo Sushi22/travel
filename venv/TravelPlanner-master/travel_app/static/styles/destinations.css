@@ -960,12 +960,13 @@ section
 .destination_subtitle
 {
 	margin-top: -4px;
+	
 }
 .destination_price
 {
 	font-size: 16px;
 	font-weight: 700;
-	color: #181818;
+	color: #134288;
 	margin-top: 16px;
 }
 .destination_list
