@@ -1,13 +1,92 @@
-from django.shortcuts import render, HttpResponse, redirect
+from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
 from .models import User, Trip
 from time import strftime, strptime
 from django.contrib import messages
 import datetime
 import bcrypt
 from .models import Season,Summer,Winter,Autumn
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import TemplateView
+from geopy.geocoders import Nominatim
+import requests
+import json
+import time
+#import pyowm 
+import pprint
+
+
+class HomeView(LoginRequiredMixin, TemplateView):
+    template_name = "index.html" 
+
 def index(request):
     dests=Season.objects.all()
     return render(request, "index.html",{'dests' : dests})
+
+
+def gmap(request,pk,string):
+    geolocator = Nominatim(user_agent="travel_app")
+    
+    # own=pyowm.OWM('97c5fd064b1993fa5c4db42b98a0e68f')
+
+    obj=get_object_or_404(Summer,pk=pk)
+    endpoint="https://maps.googleapis.com/maps/api/place/nearbysearch/json?"
+
+    dest=obj.name
+    location = geolocator.geocode(dest)
+    #city=own.weather_at_place(dest)
+
+    #l = city.get_location()
+
+    latitude=location.latitude#str(l.get_lat())
+    print(latitude)
+    longitude=location.longitude#str(l.get_lon())
+    print(longitude)
+    if(string=='Meal'):
+
+        prop='restaurant'
+    
+    else:
+        prop='tourist_attraction'
+
+    API_KEY='AIzaSyCYjGHqszlEfDknxs_6tGyLzsNmbSy3Gjw'#'AIzaSyDF3scZqIFGSYQk__pXmgv1H0no97g2R64'#'AIzaSyD0_Xn90qEIim4dUg_2r4Ix3AKljo14png'
+
+    user_req= "location={},{}&radius=6000&keyword={}&key={}".format(latitude,longitude,prop,API_KEY)
+
+    url=endpoint+user_req
+
+    # pprint.pprint(url)
+
+    response=requests.get(url)
+
+    res=response.text
+
+    pydata=json.loads(res)
+
+    #pprint.pprint(pydata)
+
+    my_data=pydata['results']
+
+    # for i in my_data:
+    #     print(pprint.pprint(i))
+
+    result=get_info(request,my_data)
+    #print(my_data)
+    return result
+
+def get_info(request,*args):
+    mylist=[]
+    data=args
+    my_data=args[0]
+    print(len(my_data))
+    #pprint.pprint(my_data)
+    #print('###########################################################################################')
+    if request.method=="GET":
+        for i in range(0,6):
+            #pprint.pprint(my_data[i])
+            #if my_data[i]['rating']>=4:
+            mylist.append(my_data[i])
+        # print(mylist[0])
+        return render(request,'maps.html',{'mylist':mylist})
 
 def about(request):
     return render(request, "about.html")
@@ -27,11 +106,11 @@ def autumn(request):
     aut=Autumn.objects.all()
     return render(request, "autumn.html",{'aut' : aut})
 
-def elements(request):
-    return render(request, "elements.html")
+def hotels(request):
+    return render(request, "hotels.html")
+def phpindex(request):
+    return render(request, "phpindex.html")
 
-def news(request):
-    return render(request, "news.html")
 
 def homepage(request):
     return render(request, "homepage.html")
@@ -42,8 +121,8 @@ def register_page(request):
     return render(request, "register.html")
 
 def login_page(request):
-    if "user_id" in request.session:
-        return redirect("/")
+    #if "user_id" in request.session:
+        #return redirect("/")
     return render(request, "login.html")
 
 def register(request):
@@ -140,7 +219,7 @@ def edit_trip(request, num):
         update_trip.end_date = request.POST["end_date"]
         update_trip.plan = request.POST["plan"]
         update_trip.save()
-        messages.success(request, "Successfully editted your trip!")
+        messages.success(request, "Successfully edited your trip!")
         return redirect("/dashboard")
 
 def trip_info_page(request, num):

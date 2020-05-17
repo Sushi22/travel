@@ -1,5 +1,7 @@
 from django.urls import path     
 from . import views
+from django.conf.urls import url
+
 urlpatterns = [
     
     path('', views.index, name="index"),
@@ -9,11 +11,15 @@ urlpatterns = [
     path('login/process', views.login),
     path('about', views.about),
     path('contact', views.contact),
-    path('summer', views.summer),
-    path('winter', views.winter),
-    path('autumn', views.autumn),
-    path('', views.elements, name="elements"),
-    path('', views.news, name="news"),
+    path('hotels', views.hotels),
+    path('phpindex', views.phpindex),
+    url(r'^summer/$', views.summer),
+    url(r'^summ/(?P<pk>\d+)/summ/(?P<string>[\w\-]+)/$', views.gmap,name='gmap'),
+    #url(r'^get_info/$', views.get_info,name='get_info'),
+    url(r'^summer/$', views.summer),
+    url(r'^summ/(?P<pk>\d+)/summ/(?P<string>[\w\-]+)/$', views.gmap,name='gmap'),
+    url(r'^summer/$', views.summer),
+    url(r'^summ/(?P<pk>\d+)/summ/(?P<string>[\w\-]+)/$', views.gmap,name='gmap'),
     path('', views.homepage),
     path('dashboard', views.dashboard),	 
     path('logout', views.logout),

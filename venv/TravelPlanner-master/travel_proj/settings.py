@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'travel_app',
+    'social_django',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -48,6 +49,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'travel_proj.urls'
@@ -63,10 +65,32 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',  # <-- Here
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
 ]
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.google.GoogleOpenId',
+    'social_core.backends.google.GoogleOAuth2',
+    'social_core.backends.google.GoogleOAuth',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+SOCIAL_AUTH_PIPELINE = (
+    'social_core.pipeline.social_auth.social_details',
+    'social_core.pipeline.social_auth.social_uid',
+    'social_core.pipeline.social_auth.social_user',
+    'social_core.pipeline.user.get_username',
+    'social_core.pipeline.social_auth.associate_by_email',
+    'social_core.pipeline.user.create_user',
+    'social_core.pipeline.social_auth.associate_user',
+    'social_core.pipeline.social_auth.load_extra_data',
+    'social_core.pipeline.user.user_details',
+)
 
 WSGI_APPLICATION = 'travel_proj.wsgi.application'
 
@@ -76,11 +100,9 @@ WSGI_APPLICATION = 'travel_proj.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.sqlite3',
         'NAME': 'travel',
-        'USER': 'postgres',
-        'PASSWORD': '1234',
-        'HOST': 'localhost'
+        
     }
 }
 
@@ -129,3 +151,28 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 
 MEDIA_URL= '/media/'
 MEDIA_ROOT= os.path.join(BASE_DIR, 'media')
+
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'index'
+LOGOUT_URL = 'logout'
+LOGOUT_REDIRECT_URL = 'login'
+
+SOCIAL_AUTH_FACEBOOK_KEY = '524160358229457'  # App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = '5a028d15f8bc87631dade57478d87299'  # App Secret
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY= '318468718637-lafb612rn149jfnl6r8k5j9pkv2v7li2.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'jy1mBbhfo_UKsDujl48nW2UY'
+
+SITE_ID = 1
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}

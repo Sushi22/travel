@@ -78,6 +78,13 @@ class Summer(models.Model):
     price= models.IntegerField()
     offer= models.BooleanField()
     days=models.IntegerField()
+    icon_1= models.ImageField(upload_to='pics',default="about.jpg")
+    name_1= models.CharField(max_length=100,default='h')
+    page_name_1= models.CharField(max_length=100,default='i')
+    icon_2= models.ImageField(upload_to='pics',default="about.jpg")
+    name_2= models.CharField(max_length=100,default='j')
+    page_name_2= models.CharField(max_length=100,default='k')
+    
 
 class Winter(models.Model):
     name= models.CharField(max_length=100)
@@ -86,6 +93,12 @@ class Winter(models.Model):
     price= models.IntegerField()
     offer= models.BooleanField()
     days=models.IntegerField()
+    icon_1= models.ImageField(upload_to='pics',default="about.jpg")
+    name_1= models.CharField(max_length=100,default='a')
+    page_name_1= models.CharField(max_length=100,default='b')
+    icon_2= models.ImageField(upload_to='pics',default="about.jpg")
+    name_2= models.CharField(max_length=100,default='c')
+    page_name_2= models.CharField(max_length=100,default='f')
 
 class Autumn(models.Model):
     name= models.CharField(max_length=100)
@@ -94,5 +107,12 @@ class Autumn(models.Model):
     price= models.IntegerField()
     offer= models.BooleanField()
     days=models.IntegerField()
+    icon_1= models.ImageField(upload_to='pics',default="about.jpg")
+    name_1= models.CharField(max_length=100,default='d')
+    page_name_1= models.CharField(max_length=100,default="about.jpg")
+    icon_2= models.ImageField(upload_to='pics',default="about.jpg")
+    name_2= models.CharField(max_length=100,default='e')
+    page_name_2= models.CharField(max_length=100,default='g')
+    
 
 

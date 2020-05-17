@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+    <h1> Showing Top Rated Results</h1>
+    <div class="card-group">
+        {%for i in mylist %}
+        <div class="card">
+            <img class="card-img-top" src="https://maps.googleapis.com/maps/api/place/photo?photoreference={{i.photo_reference}}&maxwidth={{i.width}}&maxheight={{i.height}}&key=AIzaSyD0_Xn90qEIim4dUg_2r4Ix3AKljo14png" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">{{i.name}}</h5>
+              <p class="card-text">Open Now:  {%if i.opening_hours.open_now %} YES {% else %}NO{% endif %}</p>
+              <p class="card-text">Rating: {{i.rating}}</small></p>
+            </div>
+          </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
