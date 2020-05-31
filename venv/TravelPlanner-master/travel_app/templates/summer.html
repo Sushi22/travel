@@ -55,11 +55,11 @@
 								</div>
 								<div class="meal">
 									<img src="{{s.icon_1.url}}" width="50" height="50" alt="">
-									<div class=""><a href="{% url 'gmap' s.pk s.name_1 %}">{{s.name_1}}</a></div>
+									<div class=""><a href="{% url 'gmap' s.pk s %}">{{s.name_1}}</a></div>
 								</div>
 								<div class="sight">
 									<img src="{{s.icon_2.url}}" width="50" height="50" alt="">
-									<div class=""><a href="{% url 'gmap' s.pk s.name_2 %}">{{s.name_2}}</a></div>
+									<div class=""><a href="{% url 'gmap' s.pk s %}">{{s.name_2}}</a></div>
 								</div>
 								<div class="flight">
 									<img src="{% static 'images/flight.jpg'%}" width="50" height="50" alt=""><br>
